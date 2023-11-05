@@ -1,0 +1,1 @@
+INSERT INTO [dbo].[Usuarios] (Nome, Login, Senha, IsAdmin) VALUES ('teste', 'teste', 'D63394599DA8EECBA88F9E62E3CE1BE5', 0)
