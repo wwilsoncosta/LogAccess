@@ -1,0 +1,94 @@
+﻿
+@{
+    ViewBag.Title = "Manutenção de usuários";
+}
+@Scripts.Render("~/bundles/jquery")
+<!DOCTYPE html>
+<html>
+<head>
+    @Styles.Render("~/Content/css")
+    <meta charset="utf-8">
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css">
+    <style>
+        .Navbar {
+            background-color: #46ACC2;
+            display: flex;
+            padding: 16px;
+            font-family: sans-serif;
+            color: white;
+            overflow: hidden;
+        }
+
+        .Nav_Menus {
+            display: flex;
+        }
+
+        .Nav_Link {
+            padding-right: 8px;
+            color: aliceblue
+        }
+
+        .Nav_Items_right {
+            margin-left: auto;
+        }
+
+        a:link, a:visited, a:active {
+            color: white;
+        }
+
+        .circulo {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #673ab7;
+        }
+    </style>
+</head>
+<body>
+    <div id="header" class="topnav navbar-fixed-top">
+        <div class="Navbar">
+            <nav class="Nav_Menus">
+                <div class="Nav_Link Navbar__Link-brand">
+                    Cadastro de usuários&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                </div>
+
+                <div class="Nav_Link">
+                    @Html.ActionLink("Usuários", "Usuarios", "Home")
+                </div>
+                <div class="Nav_Link">
+                    @Html.ActionLink("LogAcesso", "LogAcesso", "Home")
+                </div>
+            </nav>
+            <nav class="Nav_Menus Nav_Items_right">
+                <div class="Nav_Link">
+                    <p>@Session["NomeUsuario"]</p>
+                </div>
+                <div>
+                    <button class="circulo" type="button">
+                        <p>@Session["PrimeiraLetra"]</p>
+                    </button>
+                    &nbsp;
+                </div>
+                <div class="Nav_Link">
+                    @Html.ActionLink("Sair", "Index", "Sair")
+                </div>
+            </nav>
+
+        </div>
+    </div>
+    <div id="main" class="container body-content">
+        @RenderBody()
+    </div>
+    <div id="footer" class="row">
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year  </p>
+        </footer>
+    </div>
+</body>
+</html>
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+<script src="~/Scripts/Highcharts-4.0.1/js/highcharts.js"></script>

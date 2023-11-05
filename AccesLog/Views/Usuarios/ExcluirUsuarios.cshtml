@@ -1,0 +1,41 @@
+﻿@{
+    var usuario = ViewBag.usuarios;
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+<h2>@ViewBag.Title</h2>
+<h3 class="badge bg-secondary">@ViewBag.Message</h3>
+
+<form action="/Usuarios/excluir" method="post">
+    <div class="row col-md-offset-3">
+        <input type="hidden" id="usuarioId" name="usuarioId" value="@usuario.UsuarioId" />
+        <label for="nome" class="col-sm-2 col-form-label text-right">Nome: </label>
+        <div class="col-sm-4">
+            <input type="text" readonly class="form-control" id="nome" name="nome" value="@usuario.Nome" />
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="login" class="col-sm-2 col-form-label text-right">Login: </label>
+        <div class="col-sm-4">
+            <input type="text" readonly class="form-control" id="login" name="login" value="@usuario.Login" />
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="senha" class="col-sm-2 col-form-label text-right">Senha: </label>
+        <div class="col-sm-4">
+            <input type="password" readonly class="form-control" id="senha" name="senha" value="@usuario.Senha" />
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="isadmin" class="col-sm-2 col-form-label text-right">Admin: </label>
+        <div class="col-sm-4">
+            <select name="isadmin" id="isadmin" class="form-control" readonly>
+                <option value="0" selected="@usuario.IsAdmin == 0 ? true : false">Não</option>
+                <option value="1" selected="@usuario.IsAdmin == 1 ? true : false">Sim</option>
+            </select>
+        </div>
+    </div>
+    <br />
+    <div class="button">
+        <button type="submit" class="btn btn-danger">Excluir</button>
+    </div>
+</form>

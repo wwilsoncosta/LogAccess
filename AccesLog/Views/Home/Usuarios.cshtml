@@ -1,0 +1,38 @@
+﻿@{
+    ViewBag.Title = "Usuários";
+
+}
+@{
+    ViewBag.Title = "Lista de usuários";
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+}
+
+<h3 class="badge bg-secondary">@ViewBag.Message</h3>
+<p>
+<p class="text-left">
+    <a class="btn btn-primary" href="/Usuarios/AdicionarUsuarios">Novo</a>
+</p>
+<br />
+<table class="table table-success table-striped">
+    <tr>
+        <th>Nome</th>
+        <th>Login</th>
+        <th>Admin</th>
+        <th class="text-center">Ação</th>
+    </tr>
+    @foreach (var item in ViewBag.Usuarios)
+    {
+        <tr>
+            <td class="text-left">@item.Nome</td>
+            <td class="text-left">@item.Login</td>
+            <td>@item.Admin</td>
+            <td>
+                <a href="/Usuarios/AlterarUsuarios/@item.UsuarioId" class="btn btn-warning">
+                    Editar
+                </a>&nbsp;
+                -&nbsp;<a href="/Usuarios/ExcluirUsuarios/@item.UsuarioId" class="btn btn-danger">Excluir</a>
+            </td>
+        </tr>
+    }
+</table>
+</p> <!-- só um exemplo simples -->

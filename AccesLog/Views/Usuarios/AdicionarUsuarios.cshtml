@@ -1,0 +1,98 @@
+﻿@{
+    string mensagem = ViewBag.MsgError;
+
+    Layout = "~/Views/Shared/_LayoutSite.cshtml";
+
+}
+<h2>@ViewBag.Title</h2>
+<h3 class="badge bg-secondary">@ViewBag.Message</h3>
+
+<form action="/Usuarios/salvar" method="post">
+    <div class="row col-md-offset-3">
+        <input type="hidden" id="usuarioId" name="usuarioId" value="0" />
+        <label for="nome" class="col-sm-2 col-form-label text-right">Nome: </label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="nome" name="nome" required />
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="login" class="col-sm-2 col-form-label text-right">Login: </label>
+        <div class="col-sm-4">
+            <input type="text" class="form-control" id="login" name="login" required />
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="senha" class="col-sm-2 col-form-label text-right">Senha: </label>
+        <div class="col-sm-4">
+            <input type="password" class="form-control" id="senha" name="senha" required />
+            <p id="password-strength"></p>
+        </div>
+    </div>
+    <div class="row col-md-offset-3">
+        <label for="isadmin" class="col-sm-2 col-form-label text-right">Admin: </label>
+        <div class="col-sm-4">
+            <select name="isadmin" id="isadmin" class="form-control">
+                <option value="0">Não</option>
+                <option value="1">Sim</option>
+            </select>
+        </div>
+    </div>
+    <p>
+        @ViewBag.ErroCadastro
+    </p>
+    <br />
+    <div class="button">
+        <button type="submit" class="btn btn-primary">Salvar</button>
+    </div>
+</form>
+
+<script>
+    $(document).ready(function () {
+        $('#senha').on('input', function () {
+            var password = $(this).val();
+            var strength = 0;
+            var tips = "";
+
+            
+            if (password.length < 10) {
+                tips += "Senha pequena ";
+            } else {
+                strength += 1;
+            }
+
+            if (password.match(/[a-z]/) && password.match(/[A-Z]/)) {
+                strength += 1;
+            } else {
+                tips += "A senha deve conter caracteres minúsculas e maiúsculas. ";
+            }
+
+            if (password.match(/\d/)) {
+                strength += 1;
+            } else {
+                tips += "Digite ao menos um número ";
+            }
+
+            if (password.match(/[^a-zA-Z\d]/)) {
+                strength += 1;
+            } else {
+                tips += "Digite ao menos um caracter especial. ";
+            }
+
+            var passwordStrengthElement = $('#password-strength');
+            if (strength < 2) {
+                passwordStrengthElement.text("Fraca " + tips);
+                passwordStrengthElement.css('color', 'red');
+            } else if (strength === 2) {
+                passwordStrengthElement.text("Média. " + tips);
+                passwordStrengthElement.css('color', 'orange');
+            } else if (strength === 3) {
+                passwordStrengthElement.text("Difícil. " + tips);
+                passwordStrengthElement.css('color', 'black');
+            } else {
+                passwordStrengthElement.text("Perfeita. " + tips);
+                passwordStrengthElement.css('color', 'green');
+            }
+        });
+    });
+
+</script>
